@@ -5,7 +5,7 @@
 // first attempt at using openscad + prusa mini+ to generate
 // complex fractal objects defined algorithmically for 3d printing
 //
-levels = 5;
+levels = 2;
 
 module spheres(x, y, z, s, l) {
     translate([x, y, z]) sphere(s);
@@ -21,7 +21,7 @@ module spheres(x, y, z, s, l) {
 
 bounds = 100;
 radius = 10;
-translate([50, 50, 0])
+//translate([50, 50, 0])
 intersection() {
   spheres(0, 0, 0, radius, 0);
   translate([-bounds/2, -bounds/2, 0]) cube(bounds);
