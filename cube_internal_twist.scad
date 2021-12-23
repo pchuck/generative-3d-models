@@ -7,13 +7,13 @@ steps = 20; // number of nestings
 angle = 90; // rotation per iteration
 thick = 1 / steps; // side thickness
 
-// cube
+// cube - translated to center for easy nesting/recursion calcs
 module i_cube(s) {
     translate([-s / 2, -s / 2, -s / 2])
     cube(s);
 }
 
-// side 
+// a single side/wall of a cube
 module side(s, r, w) {
     ns = s - 2 * w * s;
     rotate(r)
@@ -21,7 +21,7 @@ module side(s, r, w) {
     cube([ns, ns, ns * w]);
 } 
 
-// sides (for subtractively exposing the inside of the cube)
+// all sides (for subtractively exposing the inside of the cube)
 module sides(s, w) {
     side(s, [  0,   0,  0], w); // top
     side(s, [  0, 180,  0], w); // bottom
@@ -31,7 +31,7 @@ module sides(s, w) {
     side(s, [270,  90, 90], w); // front
 }
 
-// a cubic frame
+// a cubic frame (difference between the cube and its walls)
 module cube_frame(s, w) {
    difference() {
         i_cube(s * 0.999); // cube
