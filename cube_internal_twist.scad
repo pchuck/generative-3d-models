@@ -5,7 +5,7 @@
 size = 100; // size of parent cube in mm
 steps = 20; // number of nestings
 angle = 90; // rotation per iteration
-thick = 0.05; // side thickness
+thick = 1 / steps; // side thickness
 
 // cube
 module i_cube(s) {
