@@ -4,9 +4,13 @@
 //
 // generated complex fractal objects defined algorithmically for 3d printing
 //
-levels = 5;
-size = 10;
+levels = 4;
+size = 100;
 r = 0.01;
+
+function r(s, l) = s;
+// or, for some randomness...
+//function r(s, l) = rands(0.5, 1.5, 1)[0] * s;
 
 // a cube recursively surrounded by smaller cubes, and with corner cutouts
 module cubes(s, x, y, z, l) {
@@ -24,11 +28,11 @@ module cubes(s, x, y, z, l) {
         }
         if(l < levels) {
             // recursion
-            cubes(s2, -s4,      s4,      s4, l + 1); // +x
-            cubes(s2,  s4,     -s4,      s4, l + 1); // -y
-            cubes(s2,  s4,      s2 + s4, s4, l + 1); // +y
-            cubes(s2,  s2 + s4, s4,      s4, l + 1); // -x
-            cubes(s2,  s4,      s4,  s - s4, l + 1); // +z
+            cubes(r(s2, l), -r(s4, l),      r(s4, l),      r(s4, l), l + 1); // +x
+            cubes(r(s2, l),  r(s4, l),     -r(s4, l),      r(s4, l), l + 1); // -y
+            cubes(r(s2, l),  r(s4, l),      r(s2, l) + s4, r(s4, l), l + 1); // +y
+            cubes(r(s2, l),  r(s2, l) + s4, r(s4, l),      r(s4, l), l + 1); // -x
+            cubes(r(s2, l),  r(s4, l),      r(s4, l),  s - r(s4, l), l + 1); // +z
         }
     }
 }

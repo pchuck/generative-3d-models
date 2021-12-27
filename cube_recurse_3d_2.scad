@@ -6,7 +6,7 @@
 //
 //
 levels = 5;
-size = 10;
+size = 100;
 f = 0.5; // size scaling factor
 t = 1 / 2; // xy translation
 
