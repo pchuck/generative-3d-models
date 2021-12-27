@@ -17,10 +17,10 @@ module cubes(s, x, y, z, l) {
             // the cube
             cube(s);
             // corner cutouts
-            translate([ -s4,  -s4, s-s4-r]) cube(s2);
-            translate([s-s4, s-s4, s-s4-r]) cube(s2);
-            translate([s-s4,  -s4, s-s4-r]) cube(s2);
-            translate([ -s4, s-s4, s-s4-r]) cube(s2);
+            translate([  - s4,   - s4, s - s4 - r]) cube(s2);
+            translate([s - s4, s - s4, s - s4 - r]) cube(s2);
+            translate([s - s4,   - s4, s - s4 - r]) cube(s2);
+            translate([  - s4, s - s4, s - s4 - r]) cube(s2);
         }
         if(l < levels) {
             // recursion
@@ -33,10 +33,9 @@ module cubes(s, x, y, z, l) {
     }
 }
 
-// cull everything below z=0
+// render the cubes and cull everything below z=0
 difference() {
-    cubes(size, -size/2, -size/2, -size/2, 0);
-    
+    cubes(size, -size/2, -size/2, -size/2, 0); // recursive cubes
     translate([-size, -size, -size * 2]) // culling plane
         cube(size * 2); 
 }

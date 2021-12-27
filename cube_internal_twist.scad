@@ -2,7 +2,7 @@
 //
 // github.com/pchuck/generative-3d-models
 //
-size = 100; // size of parent cube in mm
+size = 200; // size of parent cube in mm
 steps = 20; // number of nestings
 angle = 90; // rotation per iteration
 thick = 1 / steps; // side thickness
@@ -49,6 +49,7 @@ module cube_frame(s, w) {
 
 // offset the cube so that it sits on the z-plane
 translate([0, 0, size / 2])
+rotate([60, 45, 0])
 
 // iteratively twist and nest a series of internal cubes
 for(i=[1 / steps : 1 / steps : 1]) {

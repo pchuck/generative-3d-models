@@ -30,18 +30,18 @@ module cubes(s, x, y, z, l) {
     translate([x, y, z]) c_cube(s);
     sf = s * f; st = s * t;
     if(l < levels) {
-        cubes(sf, x,          y + st, z,         l + 1);
-        cubes(sf, x,          y - st, z,         l + 1);    
-        cubes(sf, x + st,  y,         z,         l + 1);
-        cubes(sf, x - st,  y,         z,         l + 1);
-        cubes(sf, x,          y,         z + st, l + 1);
-//        cubes(sf, x,          y,         z - st, l + 1);
+        cubes(sf, x,       y + st, z,      l + 1);
+        cubes(sf, x,       y - st, z,      l + 1);    
+        cubes(sf, x + st,  y,      z,      l + 1);
+        cubes(sf, x - st,  y,      z,      l + 1);
+        cubes(sf, x,       y,      z + st, l + 1);
+//        cubes(sf, x,       y,      z - st, l + 1);
     }
 }
 
-// cull everything below z=0
+// render the cubes and cull everything below z=0
 difference() {
-    cubes(size, 0, 0, 0, 0);
+    cubes(size, 0, 0, 0, 0); // recursive cubes
     translate([-size, -size, -size * 2]) // culling plane
         cube(size * 2); 
 }
