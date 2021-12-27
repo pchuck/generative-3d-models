@@ -5,24 +5,28 @@
 // first attempt at using openscad + prusa mini+ to generate
 // complex fractal objects defined algorithmically for 3d printing
 //
-levels = 2;
+levels = 5;
+size = 100;
 
-module spheres(x, y, z, s, l) {
+//function r(s) = s;
+function r(s) = rands(0.98, 1.02, 1)[0] * s;
+
+module spheres(s, x, y, z, l) {
+    s2 = s / 2;
     translate([x, y, z]) sphere(s);
     if(l < levels) {
-        spheres( x,      y + s, z,     s / 2, l + 1);
-        spheres( x,     -y - s, z,     s / 2, l + 1);
-        spheres(-x - s,  y,     z,     s / 2, l + 1);
-        spheres( x + s,  y,     z,     s / 2, l + 1);
-        spheres( x,      y,     z + s, s / 2, l + 1);
-//      spheres( x,      y,     z - s, s / 2, l + 1);
+        spheres(r(s2),  r(x),      r(y) + s, r(z),     l + 1);
+        spheres(r(s2),  r(x),     -r(y) - s, r(z),     l + 1);
+        spheres(r(s2), -r(x) - s,  r(y),     r(z),     l + 1);
+        spheres(r(s2),  r(x) + s,  r(y),     r(z),     l + 1);
+        spheres(r(s2),  r(x),      r(y),     r(z) + s, l + 1);
+//      spheres(r(s2),  r(x),      r(y),     r(z) - s, l + 1);
     }
 }
 
-bounds = 100;
-radius = 10;
-//translate([50, 50, 0])
+bounds = 1000;
 intersection() {
-  spheres(0, 0, 0, radius, 0);
+  spheres(size, 0, 0, 0, 0);
   translate([-bounds/2, -bounds/2, 0]) cube(bounds);
 }
+
