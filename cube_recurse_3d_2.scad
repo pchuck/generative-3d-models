@@ -5,7 +5,7 @@
 // generated complex fractal objects defined algorithmically for 3d printing
 //
 //
-levels = 5;
+levels = 4;
 size = 100;
 f = 0.5; // size scaling factor
 t = 1 / 2; // xy translation
@@ -15,10 +15,12 @@ module c_cube(s) {
     translate([-s / 2, -s / 2, -s / 2]) 
     difference() {
         cube(s);
+        
         translate([ stf,  stf, stf]) cube(s); 
         translate([ stf, -stf, stf]) cube(s); 
         translate([-stf,  stf, stf]) cube(s); 
         translate([-stf, -stf, stf]) cube(s); 
+
 //        translate([ stf,  stf, -stf]) cube(s); 
 //        translate([ stf, -stf, -stf]) cube(s); 
 //        translate([-stf,  stf, -stf]) cube(s); 
