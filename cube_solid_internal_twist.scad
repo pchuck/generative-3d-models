@@ -5,7 +5,7 @@
 size = 100; // size of parent cube in mm
 steps = 20; // number of nestings
 angle = 90; // rotation per iteration
-thick = 1 / steps / 2; // side thickness
+t = 3.0; // fixed frame width
 
 // cube - translated to center for easy nesting/recursion calcs
 module i_cube(s) {
@@ -15,10 +15,10 @@ module i_cube(s) {
 
 // a single side/wall of a cube
 module side(s, r, w) {
-    ns = s - 2 * w * s;
+    ns = s - w * 2;
     rotate(r)
     translate([-ns / 2, -ns / 2, -s / 2])
-    cube([ns, ns, ns * w]);
+    cube([ns, ns, s]);
 } 
 
 // all sides (for subtractively exposing the inside of the cube)
@@ -34,17 +34,16 @@ module sides(s, w) {
 // a cubic frame (difference between the cube and its walls)
 module cube_frame(s, w) {
    difference() {
-        i_cube(s * 0.999); // cube
+        i_cube(s - 0.01); // cube
         sides(s, w); // minus sides
-        i_cube(s * (1 - thick)); // minus the center
+        i_cube(s - w * 2 * 0.99); 
    }
 } 
-
 
 // debug building blocks
 //  i_cube(size);
 //  sides(size);
-//  cube_frame(size);
+//  cube_frame(size, t);
 
 intersection() {
     // clip objects below the positive z-plane
@@ -57,7 +56,7 @@ intersection() {
     // iteratively twist and nest a series of internal cubes
     for(i=[1 / steps : 1 / steps : 1]) {
         rotate([i*angle, i * angle, i * angle])
-        cube_frame(size * i^1, thick / i);
+        cube_frame(size * i^1, t);
     }
 }
 

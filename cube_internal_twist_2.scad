@@ -54,5 +54,5 @@ translate([0, 0, size / 2])
 // iteratively twist and nest a series of internal cubes
 for(i=[1 / steps : 1 / steps : 1]) {
     rotate([i*angle, i * angle, i * angle])
-    cube_frame(size * i^2, width);
+    cube_frame(size * i^1, width);
 }
