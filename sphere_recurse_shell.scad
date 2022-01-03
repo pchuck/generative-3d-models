@@ -25,9 +25,7 @@ module s_r(s, x, y, z, l) {
 
 sd = size / d;
 difference() {  // subtract everything below the z-plane
-
     difference() { // subtract the shell from the recursions
-        
         difference() { // subtract inner and outer to produce shell
             sphere(sd * 1.05);
             sphere(sd);

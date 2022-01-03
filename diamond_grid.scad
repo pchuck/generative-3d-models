@@ -27,6 +27,16 @@ module cube_nest(s, x, y, z, ml, l) {
         cube_nest(s2, dice(-s4, s4), dice(-s4, s4), dice(-s4, s4), ml, l + 1);
 */        
 
+        // randomly recurse quandrants
+        cube_nest(s2,  s4,  s4,  s4, rand(6), l + 1);
+        cube_nest(s2, -s4,  s4,  s4, rand(5), l + 1);
+        cube_nest(s2,  s4, -s4,  s4, rand(4), l + 1);
+        cube_nest(s2, -s4, -s4,  s4, rand(3), l + 1);        
+        cube_nest(s2,  s4,  s4, -s4, rand(5), l + 1);
+        cube_nest(s2, -s4,  s4, -s4, rand(4), l + 1);
+        cube_nest(s2,  s4, -s4, -s4, rand(3), l + 1);
+        cube_nest(s2, -s4, -s4, -s4, rand(2), l + 1);
+        
 /*        
         // randomly recurse quandrants, alt
         if(rand(l)) cube_nest(s2,  s4,  s4,  s4, ml, l + 1);
@@ -38,16 +48,6 @@ module cube_nest(s, x, y, z, ml, l) {
         if(rand(l)) cube_nest(s2,  s4,  s4,  s4, ml, l + 1);
         if(rand(l)) cube_nest(s2,  s4,  s4, -s4, ml, l + 1);
 */
-        
-        // randomly recurse quandrants
-        cube_nest(s2,  s4,  s4,  s4, rand(6), l + 1);
-        cube_nest(s2, -s4,  s4,  s4, rand(5), l + 1);
-        cube_nest(s2,  s4, -s4,  s4, rand(4), l + 1);
-        cube_nest(s2, -s4, -s4,  s4, rand(3), l + 1);        
-        cube_nest(s2,  s4,  s4, -s4, rand(5), l + 1);
-        cube_nest(s2, -s4,  s4, -s4, rand(4), l + 1);
-        cube_nest(s2,  s4, -s4, -s4, rand(3), l + 1);
-        cube_nest(s2, -s4, -s4, -s4, rand(2), l + 1);
 
 /*
         // populate all quadrants
