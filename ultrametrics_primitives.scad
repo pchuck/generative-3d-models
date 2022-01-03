@@ -3,6 +3,12 @@
 // github.com/pchuck/generative-3d-models
 //
 
+// random shortcuts
+function rand(min, max) = rands(min, max, 1)[0];
+function rand0(max) = rands(0, max, 1)[0];
+function rand1(max) = rands(1, max, 1)[0];
+function dice(a, b) = rands(-1, 1, 1)[0] > 0 ? a : b;
+
 // a cube centered in 3-space
 module cube_centered(s) {
     translate([-s / 2, -s / 2, -s / 2])

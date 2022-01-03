@@ -12,56 +12,51 @@ steps = 20; // number of nestings
 angle = 90; // rotation per iteration
 t = 1.0;
 
-function dice(a, b) = rands(-1, 1, 1)[0] > 0 ? a : b;
-
-function rand(l) = rands(0, l, 1)[0];
-
 module cube_nest(s, x, y, z, ml, l) {
     s2 = s / 2; s4 = s / 4;
     translate([x, y, z]) {
         cube_frame(s, t);
-    if(l < ml) {
-
+        if(l < ml) {
 /*        
-        // randomly nest
-        cube_nest(s2, dice(-s4, s4), dice(-s4, s4), dice(-s4, s4), ml, l + 1);
+            // randomly nest
+          cube_nest(s2, dice(-s4, s4), dice(-s4, s4), dice(-s4, s4), ml, l + 1);
 */        
 
-        // randomly recurse quandrants
-        cube_nest(s2,  s4,  s4,  s4, rand(6), l + 1);
-        cube_nest(s2, -s4,  s4,  s4, rand(5), l + 1);
-        cube_nest(s2,  s4, -s4,  s4, rand(4), l + 1);
-        cube_nest(s2, -s4, -s4,  s4, rand(3), l + 1);        
-        cube_nest(s2,  s4,  s4, -s4, rand(5), l + 1);
-        cube_nest(s2, -s4,  s4, -s4, rand(4), l + 1);
-        cube_nest(s2,  s4, -s4, -s4, rand(3), l + 1);
-        cube_nest(s2, -s4, -s4, -s4, rand(2), l + 1);
+            // randomly recurse quandrants
+            cube_nest(s2,  s4,  s4,  s4, rand0(6), l + 1);
+            cube_nest(s2, -s4,  s4,  s4, rand0(5), l + 1);
+            cube_nest(s2,  s4, -s4,  s4, rand0(4), l + 1);
+            cube_nest(s2, -s4, -s4,  s4, rand0(3), l + 1);        
+            cube_nest(s2,  s4,  s4, -s4, rand0(5), l + 1);
+            cube_nest(s2, -s4,  s4, -s4, rand0(4), l + 1);
+            cube_nest(s2,  s4, -s4, -s4, rand0(3), l + 1);
+            cube_nest(s2, -s4, -s4, -s4, rand0(2), l + 1);
         
 /*        
-        // randomly recurse quandrants, alt
-        if(rand(l)) cube_nest(s2,  s4,  s4,  s4, ml, l + 1);
-        if(rand(l)) cube_nest(s2, -s4, -s4, -s4, ml, l + 1);
-        if(rand(l)) cube_nest(s2, -s4,  s4, -s4, ml, l + 1);
-        if(rand(l)) cube_nest(s2,  s4, -s4, -s4, ml, l + 1);
-        if(rand(l)) cube_nest(s2, -s4, -s4,  s4, ml, l + 1);
-        if(rand(l)) cube_nest(s2,  s4, -s4,  s4, ml, l + 1);
-        if(rand(l)) cube_nest(s2,  s4,  s4,  s4, ml, l + 1);
-        if(rand(l)) cube_nest(s2,  s4,  s4, -s4, ml, l + 1);
+            // randomly recurse quandrants, alt
+            if(rand0(l)) cube_nest(s2,  s4,  s4,  s4, ml, l + 1);
+            if(rand0(l)) cube_nest(s2, -s4, -s4, -s4, ml, l + 1);
+            if(rand0(l)) cube_nest(s2, -s4,  s4, -s4, ml, l + 1);
+            if(rand0(l)) cube_nest(s2,  s4, -s4, -s4, ml, l + 1);
+            if(rand0(l)) cube_nest(s2, -s4, -s4,  s4, ml, l + 1);
+            if(rand0(l)) cube_nest(s2,  s4, -s4,  s4, ml, l + 1);
+            if(rand0(l)) cube_nest(s2,  s4,  s4,  s4, ml, l + 1);
+            if(rand0(l)) cube_nest(s2,  s4,  s4, -s4, ml, l + 1);
 */
 
 /*
-        // populate all quadrants
-        cube_nest(s2,  s4,  s4,  s4, ml, l + 1);
-        cube_nest(s2, -s4, -s4, -s4, ml, l + 1);
-        cube_nest(s2, -s4,  s4, -s4, ml, l + 1);
-        cube_nest(s2,  s4, -s4, -s4, ml, l + 1);
-        cube_nest(s2, -s4, -s4,  s4, ml, l + 1);
-        cube_nest(s2,  s4, -s4,  s4, ml, l + 1);
-        cube_nest(s2,  s4,  s4,  s4, ml, l + 1);
-        cube_nest(s2,  s4,  s4, -s4, ml, l + 1);
+            // populate all quadrants
+            cube_nest(s2,  s4,  s4,  s4, ml, l + 1);
+            cube_nest(s2, -s4, -s4, -s4, ml, l + 1);
+            cube_nest(s2, -s4,  s4, -s4, ml, l + 1);
+            cube_nest(s2,  s4, -s4, -s4, ml, l + 1);
+            cube_nest(s2, -s4, -s4,  s4, ml, l + 1);
+            cube_nest(s2,  s4, -s4,  s4, ml, l + 1);
+            cube_nest(s2,  s4,  s4,  s4, ml, l + 1);
+            cube_nest(s2,  s4,  s4, -s4, ml, l + 1);
 */
+        }
     }
-}
 }
 
 difference() {

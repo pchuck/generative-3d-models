@@ -2,13 +2,12 @@
 //
 // github.com/pchuck/generative-3d-models
 //
-function rand(min, max) = rands(min, max, 1)[0];
-function randz(max) = rands(1, max, 1)[0];
+use <ultrametrics_primitives.scad>;
 
 // random cubes
 module random_cubes() {
     for(i=[0: 1: 10]) {
-        translate([i, 0, 0]) cube([randz(i), randz(i), randz(i)]);
+        translate([i, 0, 0]) cube([rand1(i), rand1(i), rand1(i)]);
     }
 }
 
@@ -19,9 +18,9 @@ module random_cube_pyramid() {
     translate([0, 0, -1])
     for(z=[0: 1: 10]) {
         for(i=[0: 1: 100]) {
-            tz = randz(t);
+            tz = rand1(t);
             translate([rand(-z, z), rand(-z, z), z]) 
-            cube([randz(s), randz(s), randz(s)]);
+            cube([rand1(s), rand1(s), rand1(s)]);
         }
     }
 }
@@ -32,9 +31,9 @@ module sparse_random_cube_cloud() {
     s = 3;
     translate([0, 0, -1])
     for(i=[0: 1: 100]) {
-        tz = randz(t);
-        translate([randz(t), randz(t), randz(t)]) 
-          cube([randz(s), randz(s), randz(s)]);
+        tz = rand1(t);
+        translate([rand1(t), rand1(t), rand1(t)]) 
+          cube([rand1(s), rand1(s), rand1(s)]);
     }
 }
 
@@ -44,9 +43,9 @@ module dense_random_cube_cloud() {
     s = 3;
     translate([0, 0, -1])
     for(i=[0: 1: 5000]) {
-        tz = randz(t);
-        translate([randz(t), randz(t), randz(t)]) 
-          cube([randz(s), randz(s), randz(s)]);
+        tz = rand1(t);
+        translate([rand1(t), rand1(t), rand1(t)]) 
+          cube([rand1(s), rand1(s), rand1(s)]);
     }
 }
 
@@ -56,9 +55,9 @@ module skyscrapers() {
     s = 3;
     translate([0, 0, -1])
     for(i=[0: 1: 100]) {
-        tz = randz(t);
-        translate([randz(t), randz(t), 0]) 
-        cube([randz(s), randz(s), randz(tz)]);
+        tz = rand1(t);
+        translate([rand1(t), rand1(t), 0]) 
+        cube([rand1(s), rand1(s), rand1(tz)]);
     }
 }
 
