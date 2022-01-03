@@ -3,11 +3,18 @@
 // github.com/pchuck/generative-3d-models
 //
 
-// random shortcuts
+
+// random shortcuts/helpers
+//
+
 function rand(min, max) = rands(min, max, 1)[0];
 function rand0(max) = rands(0, max, 1)[0];
 function rand1(max) = rands(1, max, 1)[0];
 function dice(a, b) = rands(-1, 1, 1)[0] > 0 ? a : b;
+
+
+// sphere-based primitives
+//
 
 // a sphere of diameter 's' centered in 3-space (the scad default)
 module sphere_centered(s) {
@@ -30,6 +37,10 @@ module ring(s, w) {
       translate([0, 0, -s - w]) cube_centered(s * 2);
     }
 }
+
+
+// cube-based primitives
+//
 
 // a cube centered in 3-space
 module cube_centered(s) {
@@ -66,6 +77,9 @@ module cube_frame(s, w) {
    }
 }
 
+
+// unit tests / samples
+//
 angle = 90;
 size = 20;
 width = 1;

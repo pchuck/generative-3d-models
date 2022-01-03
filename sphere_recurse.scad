@@ -5,7 +5,7 @@
 // first attempt at using openscad + prusa mini+ to generate
 // complex fractal objects defined algorithmically for 3d printing
 //
-levels = 4;
+levels = 5;
 size = 100;
 
 function r(s, l) = s;
