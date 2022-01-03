@@ -9,6 +9,28 @@ function rand0(max) = rands(0, max, 1)[0];
 function rand1(max) = rands(1, max, 1)[0];
 function dice(a, b) = rands(-1, 1, 1)[0] > 0 ? a : b;
 
+// a sphere of diameter 's' centered in 3-space (the scad default)
+module sphere_centered(s) {
+    sphere(s);
+}
+
+// a hollow sphere of diameter 's' and thickness 'w'
+module sphere_shell(s, w) {
+    difference() {
+      sphere_centered(s);
+      sphere_centered(s - w);
+    }
+}
+
+// ring of diameter 's' and thickness 'w'
+module ring(s, w) {
+    difference() {
+      sphere_shell(s, w);
+      translate([0, 0,  s + w]) cube_centered(s * 2);
+      translate([0, 0, -s - w]) cube_centered(s * 2);
+    }
+}
+
 // a cube centered in 3-space
 module cube_centered(s) {
     translate([-s / 2, -s / 2, -s / 2])
@@ -45,9 +67,9 @@ module cube_frame(s, w) {
 }
 
 angle = 90;
-size = 10;
+size = 20;
 width = 1;
-offset = 20;
+offset = 30;
 
 // cube centered
 translate([offset * 0, 0, 0]) cube_centered(size);
@@ -62,3 +84,17 @@ translate([offset * 2, 0, 0]) cube_shell(size, width);
 
 // cube frame
 translate([offset * 3, 0, 0]) cube_frame(size, width);
+
+// sphere
+translate([offset * -1, 0, 0]) sphere_centered(size / 2);
+
+// sphere shell
+translate([offset * -2, 0, 0]) {
+    difference() {
+        sphere_shell(size / 2, width);
+        translate([0, -size / 2, 0]) cube_centered(size);
+    }
+}
+
+// ring
+translate([offset * -3, 0, 0]) ring(size / 2, width);
