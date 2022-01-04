@@ -11,6 +11,22 @@ function rand(min, max) = rands(min, max, 1)[0];
 function rand0(max) = rands(0, max, 1)[0];
 function rand1(max) = rands(1, max, 1)[0];
 function dice(a, b) = rands(-1, 1, 1)[0] > 0 ? a : b;
+function flip() = rands(0, 1, 1)[0] > 0.5;
+function flipt(t) = rands(0, 1, 1)[0] > t;
+
+// input : list of numbers
+// output : sorted list of numbers
+function quicksort(arr) = !(len(arr)>0) ? [] : let(
+    pivot   = arr[floor(len(arr)/2)],
+    lesser  = [ for (y = arr) if (y  < pivot) y ],
+    equal   = [ for (y = arr) if (y == pivot) y ],
+    greater = [ for (y = arr) if (y  > pivot) y ]
+) concat(
+    quicksort(lesser), equal, quicksort(greater)
+);
+
+function distance(x1, y1, z1, x2, y2, z2) =
+     sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2 + (z2 - z1) ^ 2);
 
 
 // sphere-based primitives
