@@ -15,4 +15,4 @@ using openscad (https://en.wikibooks.org/wiki/OpenSCAD_User_Manual)
 * cube_solid_internal_twist - (printable) 'infinite' nested 3d cube frames
 * diamond_grid - (printable, barely), nested sparse frames
 * brownian_twist - twisted pentagon vase
-
+* twisted_rings - (printable), nested rotated rings
