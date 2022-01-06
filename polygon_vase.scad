@@ -75,10 +75,10 @@ difference() {
     simple_extruded_vase(5, twist, radius, 0, height, [1.0, 1.0], [0, 0, 0]);
 
     translate([0, 0, height / 2]) 
-      cylinder(h=height * (steps - 1) / steps, r=radius * 0.84, center=true);
+      cylinder(h=height * (steps - 1) / steps, d1=2 * radius * 0.82, d2=2 * radius * 0.85, center=true);
     
-    translate([0, 0, 2 + height / 2])
-        cylinder(h=height + 2, r=radius * 0.80, center=true);
+    translate([0, 0, height])
+        cylinder(h=11, d1=2*radius * 0.85, d2=2*radius * 0.7, center=true);
 }
 
 /* 
