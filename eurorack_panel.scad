@@ -11,7 +11,7 @@ hole_r = hole_d / 2; // mount hole radius
 offset = hp_mm / 2; // offset from edge of panel to center of hole
 
 // customizable parameters
-hp = 6; // width in hp of the panel
+hp = 2; // width in hp of the panel
 thick = 2; // panel thickness
 hole_count = 4; // minimum number of mounting holes
 hole_width = 3.2; // 5.08mm; larger than hole_d, for easier mounting.
@@ -36,33 +36,26 @@ module panel(hp, mount_holes=2, hw=hole_width, ignore_holes=false) {
 
 module mount_holes(hp, holes, hw) {
     holes = holes - holes % 2; // force even number of holes
-    top_holes(hp, hw, holes / 2);
-    bottom_holes(hp, hw, holes / 2);
+//    top_holes(hp, hw, holes / 2);
+//    bottom_holes(hp, hw, holes / 2);
+    holes(offset_y,            hp, hw, holes / 2); // bottom holes
+    holes(height_o - offset_y, hp, hw, holes / 2); // top holes
 }
 
 module make_hole(y, low, high, number, count) {
     if(count < number) {
         half = floor((high - low) / 2 + low);
         translate([half * hp_mm - offset, y, 0]) mount_hole(hole_width);
-        make_hole(y, low, half, number, count + 1);
+        make_hole(y,  low, half, number, count + 1);
         make_hole(y, half, high, number, count + 1);
     }
 }
 
-module top_holes(hp, hw, holes) {
-    y_ho = height_o - offset_y;
-    translate([hp * hp_mm - offset, y_ho, 0]) mount_hole(hole_width); // l
-    if(holes > 1)
-        translate([             offset, y_ho, 0]) mount_hole(hole_width); // r
-    make_hole(y_ho, 1, hp, holes - 2, 0);
-}
-
-module bottom_holes(hp, hw, holes) {
-    y_ho = offset_y;
-    translate([             offset, y_ho, 0]) mount_hole(hole_width); // r
-    if(holes > 1)
-        translate([hp * hp_mm - offset, y_ho, 0]) mount_hole(hole_width); // l
-    make_hole(y_ho, 1, hp, holes - 2, 0);
+module holes(y, hp, hw, holes) {
+    hpx = hp * hp_mm;
+    translate([hpx - offset, y, 0]) mount_hole(hole_width);
+    if(holes > 1) translate([offset, y, 0]) mount_hole(hole_width); // r
+    make_hole(y, 1, hp, holes - 2, 0);
 }
 
 module mount_hole(hw) {
