@@ -5,9 +5,9 @@
 //
 
 // customizable parameters
-hp = 2; // width in hp of the panel
-thick = 2; // panel thickness
-hole_count = 4; // minimum number of mounting holes
+hp = 4; // width in hp of the panel
+thick = 1; // panel thickness
+holes = 1; // desired number of holes along top and bottom of panel
 hole_width = 3.2; // 5.08mm; larger than hole_d, for easier mounting.
 
 // constants
@@ -23,35 +23,15 @@ height_s = (height_o - height_i - height_r * 2) / 2; // surface height
 hw_diff = hole_width - hole_d;
 offset_y = height_s / 2;
 
-module panel(hp, mount_holes=2, hw=hole_width, ignore_holes=false) {
+module panel(hp, holes=2, hw=hole_width) {
+    hole_skip = hp / (holes - 1); // number of hp to skip per hole
     difference() {
         cube([hp_mm * hp, height_o, thick]);
-        if(!ignore_holes) mount_holes(hp, mount_holes, hole_width);
+        mount_holes(hp, holes, hole_skip, hole_width); 
     }
 }
 
-module mount_holes(hp, holes, hw) {
-    holes = holes - holes % 2; // force even number of holes
-    holes(offset_y,            hp, hw, holes / 2); // bottom holes
-    holes(height_o - offset_y, hp, hw, holes / 2); // top holes
-}
-
-module make_hole(y, low, high, number, count) {
-    if(count < number) {
-        half = floor((high - low) / 2 + low);
-        translate([half * hp_mm - offset, y, 0]) mount_hole(hole_width);
-        make_hole(y,  low, half, number, count + 1);
-        make_hole(y, half, high, number, count + 1);
-    }
-}
-
-module holes(y, hp, hw, holes) {
-    translate([hp * hp_mm - offset, y, 0])  mount_hole(hole_width); // left
-    if(holes > 1) translate([offset, y, 0]) mount_hole(hole_width); // right
-    make_hole(y, 1, hp, holes - 2, 0);
-}
-
-module mount_hole(hw) {
+module mount_hole(hw=hole_width) {
     // diffs m/b larger than object being diffed from for ideal BSP operations
     hole_depth = thick + 2; 
     if(hw_diff < 0) { hw_diff = 0; }
@@ -64,8 +44,39 @@ module mount_hole(hw) {
     }
 }
 
-// tests
-//panel(4, 2, hole_width);
-//panel(60, 8,hole_width);
+module mount_holes(hp, holes, hole_skip, hw) {
+    top = offset_y;
+    bottom = height_o - offset_y;
+    left = hp * hp_mm - offset;
+    right = offset;
 
-panel(hp, hole_count, hole_width);
+    translate([right, top]) mount_hole();
+    translate([left, bottom]) mount_hole();
+    if(holes > 1) {
+        translate([left, top]) mount_hole();
+        translate([right, bottom]) mount_hole();
+        for(i=[hole_skip + 1: hole_skip: hp]) {
+            translate([floor(i) * hp_mm - offset, top]) mount_hole(); // R
+            translate([floor(i) * hp_mm - offset, bottom]) mount_hole(); // L
+        }
+    }
+}
+
+
+// tests / favorites
+//panel(1, 1, hole_width);
+//panel(2, 1, hole_width);
+//panel(4, 1, hole_width);
+//panel(6, 2, hole_width);
+//panel(8, 2, hole_width);
+//panel(10, 2, hole_width);
+//panel(12, 2, hole_width);
+panel(16, 4, hole_width);
+//panel(20, 4, hole_width);
+//panel(24, 4, hole_width);
+//panel(32, 4, hole_width);
+
+// default
+//panel(hp, holes, hole_width);
+
+
