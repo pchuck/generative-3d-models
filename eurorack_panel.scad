@@ -5,19 +5,19 @@
 //
 
 // customizable parameters
-hp = 4; // width in hp of the panel
-thick = 1; // panel thickness
-holes = 1; // desired number of holes along top and bottom of panel
-hole_width = 3.2; // 5.08mm; larger than hole_d, for easier mounting.
+hp = 8; // width in hp of the panel
+thick = 2; // panel thickness. doepfer standard is 2mm. use ~1-3mm.
+holes = 2; // desired number of holes along top and bottom of panel
+hole_width = 3.2; // s/b >= hole_d. for easier mounting use 5.08mm
 
 // constants
 hp_mm = 5.08; // mm per hp
-hole_d = 3.2; // mount hole diameter
+hole_d = 3.2; // mount hole diameter in mm.
 hole_r = hole_d / 2; // mount hole radius
 offset = hp_mm / 2; // offset from edge of panel to center of hole
-height = 133.35; // overall panel height. 133.35mm = 3u.
-height_o = 128.5; // panel outer height
-height_i = 110; // panel inner height. rail clearance = ~11.675mm.
+height = 133.35; // overall panel height. (3u std is 133.35mm or 5.25").
+height_o = 129; // panel outer ht. (doepfer std is 128.5). 129 seems nicer.
+height_i = 111; // panel inner ht w/ rail clearance of 11.2mm. ~11.675 is std.
 height_r = (height - height_o) / 2; // rail height
 height_s = (height_o - height_i - height_r * 2) / 2; // surface height
 hw_diff = hole_width - hole_d;
@@ -32,9 +32,7 @@ module panel(hp, holes=2, hw=hole_width) {
 }
 
 module mount_hole(hw=hole_width) {
-    // diffs m/b larger than object being diffed from for ideal BSP operations
-    hole_depth = thick + 2; 
-    if(hw_diff < 0) { hw_diff = 0; }
+    hole_depth = thick + 2; // drill 'bit' for subtractive CSG
     translate([0, 0, -1]) {
         union() {
             cylinder(r=hole_r, h=hole_depth, $fn=20);
@@ -47,8 +45,9 @@ module mount_hole(hw=hole_width) {
 module mount_holes(hp, holes, hole_skip, hw) {
     top = offset_y;
     bottom = height_o - offset_y;
-    left = hp * hp_mm - offset;
-    right = offset;
+    // if hp > 3, use second-to-last mount holes on either edge
+    left = hp > 3 ? (hp - 1) * hp_mm - offset : hp * hp_mm - offset;
+    right = hp > 3 ? offset + hp_mm : offset;
 
     translate([right, top]) mount_hole();
     translate([left, bottom]) mount_hole();
@@ -71,12 +70,12 @@ module mount_holes(hp, holes, hole_skip, hw) {
 //panel(8, 2, hole_width);
 //panel(10, 2, hole_width);
 //panel(12, 2, hole_width);
-panel(16, 4, hole_width);
+//panel(16, 4, hole_width);
 //panel(20, 4, hole_width);
 //panel(24, 4, hole_width);
 //panel(32, 4, hole_width);
 
 // default
-//panel(hp, holes, hole_width);
+panel(hp, holes, hole_width);
 
 
