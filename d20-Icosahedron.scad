@@ -1,5 +1,6 @@
 // 20-sided icosahedron (20x 3 sided faces, 12x degree 5 vertices, 20x halves)
 //   coords via: http://dmccooey.com/polyhedra/Icosahedron.txt
+//
 use <polyhedra_primitives.scad>;
 
 txt_depth = 0.12; // was 0.09

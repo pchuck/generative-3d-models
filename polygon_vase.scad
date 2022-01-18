@@ -71,6 +71,7 @@ union() {
 //simple_extruded_vase(5, 120, radius, 0, height, [1.0, 1.0], [0, 0, 0]);
 
 // with interference patterns/holes
+/*
 difference() {
     simple_extruded_vase(5, twist, radius, 0, height, [1.0, 1.0], [0, 0, 0]);
 
@@ -80,12 +81,14 @@ difference() {
     translate([0, 0, height])
         cylinder(h=11, d1=2*radius * 0.85, d2=2*radius * 0.7, center=true);
 }
+*/
 
-/* 
+
 // with varying radius
-simple_extruded_vase(5, 45, radius, 0, height / 2, [0.5, 0.5], [0, 0, 0]);
-simple_extruded_vase(5, 30, radius * 0.5, height / 2, height / 4, [1.25, 1.25], [0, 0, 27]);
-simple_extruded_vase(5, 45, radius * 0.63, height / 2 + height / 4, height / 4, [1.25, 1.25], [0, 0, -3]);
+/*
+simple_extruded_vase(5, 180, radius, 0, height / 2, [1.0, 1.0], [0, 0, 0]);
+simple_extruded_vase(5, 180, radius, height / 2, height / 2, [1, 1], [0, 0, 27]);
+simple_extruded_vase(5, 180, radius, height, height / 2, [0, 0], [0, 0, -3]);
 */
 
 /* 
@@ -97,3 +100,40 @@ simple_extruded_vase(8, 60, radius * 1.25, height / 3 * 2, height / 3, [2, 1.5],
 
 // complex_extruded_vase();
 
+C0 = 0.809016994374947424102293417183;
+vertices = [
+[ 0.5,  0.0,   C0],
+[ 0.5,  0.0,  -C0],
+[-0.5,  0.0,   C0],
+[-0.5,  0.0,  -C0],
+[  C0,  0.5,  0.0],
+[  C0, -0.5,  0.0],
+[ -C0,  0.5,  0.0],
+[ -C0, -0.5,  0.0],
+[ 0.0,   C0,  0.5],
+[ 0.0,   C0, -0.5],
+[ 0.0,  -C0,  0.5],
+[ 0.0,  -C0, -0.5]];
+faces = [
+[ 10 ,  2,  0],
+[  5 , 10,  0],
+[  4 ,  5,  0],
+[  8 ,  4,  0],
+[  2 ,  8,  0],
+[ 11 ,  1,  3],
+[  7 , 11,  3],
+[  6 ,  7,  3],
+[  9 ,  6,  3],
+[  1 ,  9,  3],
+[  7 ,  6,  2],
+[ 10 ,  7,  2],
+[ 11 ,  7, 10],
+[  5 , 11, 10],
+[  1 , 11,  5],
+[  4 ,  1,  5],
+[  9 ,  1,  4],
+[  8 ,  9,  4],
+[  6 ,  9,  8],
+[  2 ,  6,  8]];
+scale([10, 10, 10])
+    polyhedron(points=vertices, faces=faces, convexity=20);
