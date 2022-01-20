@@ -1,4 +1,4 @@
-// 20-sided icosahedron (20x 3 sided faces, 12x degree 5 vertices, 20x halves)
+// 20-sided icosahedron
 //   coords via: http://dmccooey.com/polyhedra/Icosahedron.txt
 //
 use <polyhedra_primitives.scad>;
