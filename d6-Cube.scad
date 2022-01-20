@@ -1,16 +1,14 @@
 // Cube (Hexahedron)
-//   4 sided faces = 6
-//   degree 3 vertices = 8
 //   coords via: http://dmccooey.com/polyhedra/Cube.html
 //
 use <polyhedra_primitives.scad>;
 
-txt_depth = 0.09;
+txt_depth = 0.12;
 txt_size = 0.35;
 txt_font = "Arial:style=Bold";
 
 diameter = 26; // distance from one [deg 4]-vertex to the vertex opposite
-minko = 0; // chamfer the edges [0 = disabled]
+minko = 0;   // chamfer the edges [0 = disabled]
 roll = 0.16; // round by intersection with a smaller sphere [0 = disabled]
 minkfn = 80; // $fn variable for chamfer and the sphere
 
@@ -30,6 +28,7 @@ vertices = [
     [ 0.5, 0.5, 0.5], [ 0.5, 0.5, -0.5], [ 0.5, -0.5, 0.5], [0.5, -0.5, -0.5],
     [-0.5, 0.5, 0.5], [-0.5, 0.5, -0.5], [-0.5, -0.5, 0.5], [-0.5, -0.5, -0.5]
 ];
+
 faces = [
     [4, 5, 1, 0], [2, 6, 4, 0], [1, 3, 2, 0],
     [6, 2, 3, 7], [5, 4, 6, 7], [3, 1, 5, 7]
