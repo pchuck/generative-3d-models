@@ -1,4 +1,5 @@
-// rendering methods adapted from thingiverse script by unknown author
+// rendering methods adapted and refactored from thingiverse script by
+// unknown author and https://www.thingiverse.com/agournay
 
 // center
 function add3(v, i = 0, r) = 
