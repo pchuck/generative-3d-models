@@ -5,24 +5,21 @@ use <polyhedra_primitives.scad>;
 
 txt_depth = 0.12;
 txt_size = 0.35;
-txt_font = "Arial:style=Bold";
-
 diameter = 26; // distance from one [deg 4]-vertex to the vertex opposite
-minko = 0;   // chamfer the edges [0 = disabled]
-roll = 0.16; // round by intersection with a smaller sphere [0 = disabled]
-minkfn = 80; // $fn variable for chamfer and the sphere
+minko = 0;     // chamfer the edges [0 = disabled]
+roll = 0.16;   // round by intersection with a smaller sphere [0 = disabled]
+minkfn = 80;   // $fn variable for chamfer and the sphere
+original_diameter = sqrt(3) / 2 + minko;
+scaling_factor = diameter / 2 / original_diameter;
 
-original_diameter = sqrt(3) * 0.5 + minko;
-scaling_factor = diameter * 0.5 / original_diameter;
-
-// This is the usual labeling: opposed faces are balanced; vertices deviate by 4.5, 3.5, 2.5 and 1.5 points (two each).
+// This is the usual labeling: opposed faces are balanced;
+// vertices deviate by 4.5, 3.5, 2.5 and 1.5 points (two each).
+txt_font = "Arial:style=Bold";
 labels = ["1", "2", "4", "6", "3", "5"];
 
-//This labeling has one pair of opposed faces which are balanced while the other two pairs deviate by 4 points; six vertices are .5 points off and two are 1.5 points off
-//labels = ["1","4","6","2","5","3"];
-
-//This labeling has one pair of opposed faces which are balanced while the other two pairs deviate by 3 points; vertices are .5, 1.5, 2.5 and 3.5 points off (two each).
-//labels = ["1","2","6","3","4","5"];
+// japanese
+//txt_font = "Hiragino Sans:style=Bold";
+//labels = ["一", "二", "三", "四", "五", "六"];
 
 vertices = [
     [ 0.5, 0.5, 0.5], [ 0.5, 0.5, -0.5], [ 0.5, -0.5, 0.5], [0.5, -0.5, -0.5],

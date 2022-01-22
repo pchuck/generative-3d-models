@@ -7,17 +7,17 @@ txt_depth = .12;
 txt_size = .4;
 txt_font = "Helvetica:style=Bold";
 diameter = 24; // distance from one vertex to the vertex opposite
-minko = 0.1; // chamfer the edges [0 = disabled]
-roll = 0.15; // round by intersection with a smaller sphere [0 = disabled]
-minkfn = 80; //sets the $fn variable for the "rounding"s
+minko = 0.1;   // chamfer the edges [0 = disabled]
+roll = 0.15;   // round by intersection with a smaller sphere [0 = disabled]
+minkfn = 80;   // sets the $fn variable for the "rounding"s
 
 // shape constants
 C0 = 0.1067764671821527129104854331344823715423;
-
 original_diameter = 1 + C0^2 + minko;
 scaling_factor = diameter * 0.5 / original_diameter;
 C1 = 1 + C0 + C0^2;
-zint = -(C1 - (1 + 2 * cos(36)) / C1) / 4; // z intersect perpendicular to face
+// z intersect of the ray perpendicular to the faces
+zint = -(C1 - (1 + 2 * cos(36)) / C1) / 4; 
 
 // balanced opposed faces and the smallest imbalance of the vertices
 // (.5 for the degree 5 vertices; two degree 3 vertices deviate by 2.5,
@@ -50,32 +50,8 @@ faces = [
     [ 1, 11, 10,  9], [ 1,  3,  2, 11]
 ];
 
-module facetext(vert,txt,tv) {
-    barpo = add3(vert) / len(vert); // barycentre
-    bar = add3([barpo, [0, 0, (tv == 0 ? 1 : -1) * zint]]);
-    length = norm(bar);       // radial distance
-    b = acos(bar.z / length); // inclination angle
-    c = atan2(bar.y, bar.x);  // azimuthal angle
-    lenfac = (norm(barpo) + minko) / norm(barpo);
-    // stretching coordiante to compensate for chamfering..
-    barpof = [for(j=[0:2]) barpo[j] * lenfac];
-    translate(barpof)
-        rotate([0,b,c])
-            linear_extrude(txt_depth,center=true)
-                text(text=txt,size = txt_size, font=txt_font,
-                     halign="center", valign="center");
-}
-
-scale(scaling_factor)
-difference() {
-    intersection() {
-        minkowski($fn=minkfn) {
-            polyhedron(points=vertices, faces=faces, convexity=20);
-            sphere(minko);
-        };
-        sphere(original_diameter - roll, $fn=minkfn);
-    }
-    for(i=[0:len(faces)-1])
-        facetext(facecoord(vertices, faces, i), labels[i], faces[i][0]);
-}
-
+// polyhedron rendered with labels and chamfering
+render_10_12(labels, scaling_factor, vertices, faces, minko,
+             original_diameter, roll, minkfn,
+             txt_font, txt_size, txt_depth,
+             0, zint);
