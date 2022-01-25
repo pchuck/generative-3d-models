@@ -11,7 +11,7 @@ txt_depth = .11;
 txt_size = .54;
 txt_font = "Arial:style=Bold";
 diameter = 28; // distance from one vertex to the vertex opposite
-minko = 0.4;   // chamfer the edges [0 = disabled]
+minko = 0.2;   // chamfer the edges [0 = disabled]
 roll = -.1;    // round by intersection with a smaller sphere [0 = disabled]
 minkfn = 80;   // $fn variable for chamfer and the sphere
 

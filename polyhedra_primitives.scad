@@ -2,7 +2,7 @@
 // unknown author and https://www.thingiverse.com/agournay
 
 // center
-function add3(v, i = 0, r) = 
+function add3(v, i=0, r) = 
     i < len(v) ? 
         i == 0 ?
             add3(v, 1, v[0]) :
@@ -21,7 +21,6 @@ module facetext(vert, txt, minko, font, size, depth, xrot=0) {
     length = norm(bar);           // radial distance
     b = acos(bar.z / length);     // inclination angle
     c = atan2(bar.y, bar.x);      // azimuthal angle
-    
     rotate([0, b, c])
         translate([0, 0, length + minko])
             linear_extrude(depth, center=true)
@@ -46,6 +45,43 @@ module facetext_10_12(vert, txt, tv, zint, size, font, depth, minko) {
                      halign="center", valign="center");
 }
 
+// render just the surface text, no shape
+module render_text(labels, scaling_factor, vertices, faces, minko,
+                   original_diameter, roll, minkfn,
+                   txt_font, txt_size, txt_depth,
+                   xrot=0) {
+    scale(scaling_factor) {
+        for(i=[0:len(faces)-1])
+            facetext(facecoord(vertices, faces, i), labels[i], minko, 
+                     txt_font, txt_size, txt_depth, xrot);
+    }
+}
+
+// render just the scaled polyhedra, no chamfering or text
+module render_shape(labels, scaling_factor, vertices, faces, minko,
+                    original_diameter, roll, minkfn,
+                    txt_font, txt_size, txt_depth,
+                    xrot=0) {
+    scale(scaling_factor) {
+        polyhedron(points=vertices, faces=faces, convexity=20);
+    }
+}
+
+// render just the scaled polyhedra with text, no chamfering
+module render_simple(labels, scaling_factor, vertices, faces, minko,
+                     original_diameter, roll, minkfn,
+                     txt_font, txt_size, txt_depth,
+                     xrot=0) {
+    scale(scaling_factor) {
+        difference() {
+            polyhedron(points=vertices, faces=faces, convexity=20);
+            for(i=[0:len(faces)-1])
+                facetext(facecoord(vertices, faces, i), labels[i], minko, 
+                    txt_font, txt_size, txt_depth, xrot);
+        }
+    }
+}
+
 // render scaled polyhedra with chamfering and text-labeled faces
 module render(labels, scaling_factor, vertices, faces, minko,
               original_diameter, roll, minkfn,
@@ -60,9 +96,9 @@ module render(labels, scaling_factor, vertices, faces, minko,
                 }
                 sphere(original_diameter - roll, $fn=minkfn);
             }
-        for(i=[0:len(faces)-1])
-            facetext(facecoord(vertices, faces, i), labels[i], minko, 
-                txt_font, txt_size, txt_depth, xrot);
+            for(i=[0:len(faces)-1])
+                facetext(facecoord(vertices, faces, i), labels[i], minko, 
+                    txt_font, txt_size, txt_depth, xrot);
         }
     }
 }
@@ -82,10 +118,10 @@ module render_10_12(labels, scaling_factor, vertices, faces, minko,
                 }
                 sphere(original_diameter - roll, $fn=minkfn);
             }
-        for(i=[0:len(faces)-1])
-            facetext_10_12(facecoord(vertices, faces, i),
-                           labels[i], faces[i][index], zint,
-                           txt_size, txt_font, txt_depth, minko);
+            for(i=[0:len(faces)-1])
+                facetext_10_12(facecoord(vertices, faces, i),
+                               labels[i], faces[i][index], zint,
+                               txt_size, txt_font, txt_depth, minko);
         }
     }
 }
