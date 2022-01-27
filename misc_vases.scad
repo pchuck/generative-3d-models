@@ -17,7 +17,6 @@ step_inc = height / steps;
 twist_inc = twist / steps;
 echo(steps);
 
-
 module simple_extruded_vase(sides, twist, radius, offset, height, scale, r) {
     translate([0, 0, offset + height / 2])
         rotate(r)
@@ -65,20 +64,7 @@ union() {
 
 
 // simple twisted extrusion, with constant radius
-//simple_extruded_vase(5, 120, radius, 0, height, [1.0, 1.0], [0, 0, 0]);
-
-// opposing twisted extrusion, with constant radius
-/*
-difference() {
-  union() {
-    simple_extruded_vase(5, 720, radius, 0, height, [1.0, 1.0], [0, 0, 0]);
-    simple_extruded_vase(5, -720, radius, 0, height, [1.0, 1.0], [0, 0, 0]);
-  }
-  cylinder(r=radius * 0.88 * 0.99, h=height);
-}
-*/
-// insert sleeve:
-cylinder(r=radius * 0.88 * 0.99, h=height);
+simple_extruded_vase(5, 120, radius, 0, height, [1.0, 1.0], [0, 0, 0]);
 
 // simple twisted extrusion, with changing radius
 //simple_extruded_vase(5, 120, radius, 0, height, [0.5, 0.5], [0, 0, 0]);
