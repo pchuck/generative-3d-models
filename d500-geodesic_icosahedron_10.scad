@@ -222,3 +222,12 @@ faces = [
 render_simple(labels, scaling_factor, vertices, faces, minko,
        original_diameter, roll, minkfn,
        txt_font, txt_size, txt_depth);
+
+// geodesic vase...
+/*
+size = 50;
+scale = size / 2;
+scale([0.5, 0.5, 1.0])
+    rotate([45, 0, 0]) 
+        sphere(scale, $fn=100);
+*/
