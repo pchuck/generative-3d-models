@@ -5,6 +5,7 @@ defined and generated algorithmically for 3d printing
 using openscad (https://en.wikibooks.org/wiki/OpenSCAD_User_Manual)
 
 * ultrametrics_primitives - various primitives and building blocks
+* fractal_growth - recursive fractal growth, IFS-style
 * sphere_recurse_shell - (printable) sphere shell recursion
 * sphere_recurse - (printable) spheres recursively surrounded by smaller spheres
 * cube_complex_recurse - recursive cube constellation
