@@ -103,8 +103,10 @@ render(labels, scaling_factor, vertices, faces, minko,
 scale(scaling_factor) {
     difference() {
         polyhedron(points=vertices, faces=faces, convexity=20);
+        /*
         for(i=[0:len(faces)-1])
             facetext(facecoord(vertices, faces, i), labels[i], minko, 
                 txt_font, txt_size, txt_depth);
+        */
     }
 }
