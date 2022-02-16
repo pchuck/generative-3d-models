@@ -2,8 +2,8 @@
 //
 // github.com/pchuck/generative-3d-models
 //
-size = 100; // size of the tray in mm
-wall = 1; // wall thickness in mm
+size = 175; // size of the tray in mm
+wall = 2; // wall thickness in mm
 height = 0.25; // height as a fraction of size
 cutd = 1; // cutout depth
 cutf = (size - 2) / size; // cutout factor
