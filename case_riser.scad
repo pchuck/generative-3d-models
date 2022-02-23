@@ -2,25 +2,38 @@
 //   with internal cutout
 //
 
-// cutout scaling factor
-f = 0.8;
+// whether to render cutouts or solid (2d extrusion only)
+2d = false;
 
-// make noise 104hp case, 80deg riser wedge
+// make noise 104hp case, 60deg riser wedge
+f = 0.8; // cutout scaling factor
 d = 26; // width of riser (mm)
-x = 130.55; // case dimensions (mm)
-y =  69.85;
+x = 120; // case dimensions, 130.55mm actual
+y =  60; // 69.85mm actual
 z = 546.10; 
-t = 70; // 'theta', angle of rotation (degrees)
-r = 10; // rise in (mm)
+t = 60; // 'theta', angle of rotation (degrees)
+r = 8; // rise in (mm)
 
 // norns 45deg riser wedge
 /*
+f = 0.9;
 d = 90;
 x = 80;
-y = 90;
-z = 43; 
+y = 43;
+z = 90; 
 t = 45;
-r = 10;
+r = 1;
+*/
+
+// norns or nts-1 45deg riser wedge, short
+/*
+f = 0.95;
+d = 110; // actual width is 13cm, feet at 11cm
+x = 80;
+y = 20;
+z = 110; 
+t = 45;
+r = 1.5;
 */
 
 module case() {
@@ -39,11 +52,15 @@ module wedge(x, y, depth) {
   difference() {
     linear_extrude(depth)
       polygon(points=p1, paths=[[0, 1, 2]], convexity=10);
-    linear_extrude(depth + 1)
-      translate([x * (1 - f) / 2 + x_s / 2,
-                 y * (1 - f) / 4 + y_s / 4, 0])
-      scale([f, f, 0])
-      polygon(points=p1, paths=[[0, 1, 2]], convexity=10);
+    if(2d == false) { // whether to subtract cutouts
+//      minkowski() {
+      linear_extrude(depth + 1) 
+        translate([x * (1 - f) / 2 + x_s / 2, // /8 for short (nts1)
+                   y * (1 - f) / 4 + y_s / 4, 0])
+        scale([f, f, 0])
+        polygon(points=p1, paths=[[0, 1, 2]], convexity=10);
+//      cylinder(r=2,h=1); }
+     }
   }
 }
 
@@ -68,4 +85,8 @@ module riser() {
 }
 
 // case();
+// minkowski() {
 riser();
+// cylinder(r=2,h=1); }
+
+
