@@ -1,9 +1,6 @@
 // configurable case riser wedges
-//   with internal cutout
+//   for vase mode printing
 //
-
-// cutout scaling factor
-f = 0.8;
 
 // make noise 104hp case, 80deg riser wedge
 d = 26; // width of riser (mm)
@@ -34,17 +31,8 @@ module wedge(x, y, depth) {
   p1_1 = [x, 0];
   p1_2 = [x, y];
   p1 = [p1_0, p1_1, p1_2];
-  x_s =  abs(x / y) * abs(x) / x / f;
-  y_s = -abs(y / x) * abs(y) / y / f;
-  difference() {
-    linear_extrude(depth)
-      polygon(points=p1, paths=[[0, 1, 2]], convexity=10);
-    linear_extrude(depth + 1)
-      translate([x * (1 - f) / 2 + x_s / 2,
-                 y * (1 - f) / 4 + y_s / 4, 0])
-      scale([f, f, 0])
-      polygon(points=p1, paths=[[0, 1, 2]], convexity=10);
-  }
+  linear_extrude(depth)
+    polygon(points=p1, paths=[[0, 1, 2]], convexity=10);
 }
 
 module rect(x1, x2, depth) {
