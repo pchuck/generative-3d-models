@@ -94,6 +94,39 @@ module cube_frame(s, w) {
 }
 
 
+// more complex fractal shapes
+//
+
+// fractal growth
+module growth(dim, bf, sf, rf, t, s, r, n) {
+    f1 = 0.5; f2 = 0.7; // z-size factor range
+    zfact = 0.95; // z-translation factor, to ensure connected branches
+    
+    if(n > 0) {
+        translate(t) {
+            rotate(r) {
+                if(dim == 2) cube([s.x, s.y, s.z]);
+                else cylinder(r=s.x, h=s.z);
+                for(i=[1:1:bf]) { // branching factor
+                    tn = [t.x, t.y, s.z / i * zfact]; // translation
+                    sn = [s.x * sf, s.y * sf, s.z * rand(f1, f2)]; // scale
+                    rn = dim == 2 ? // rotation
+                        [rand(-r.x, r.x) + rand(-rf, rf), 0, 0] : 
+                        [rand(-r.x, r.x) + rand(-rf, rf), 
+                         rand(-r.y, r.y) + rand(-rf, rf),
+                         rand(-r.z, r.z) + rand(-rf, rf)];
+                    growth(dim, bf, sf, rf, // d, branch, scale, rotation factor
+                           tn, // translate
+                           sn, // size
+                           rn, // rotation
+                           n - 1); 
+                 }
+            }
+        }
+    }
+}
+
+
 // unit tests / samples
 //
 angle = 90;
@@ -128,3 +161,4 @@ translate([offset * -2, 0, 0]) {
 
 // ring
 translate([offset * -3, 0, 0]) ring(size / 2, width);
+
