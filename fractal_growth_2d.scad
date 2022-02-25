@@ -6,10 +6,14 @@ use <ultrametrics_primitives.scad>;
 $fn = 20;
 
 dim = 2; // whether to grow in two or three dimensions
-bf = 4; // number of growths per stalk
-sf = 0.7; // x/y-size factor
-width = 2.0; // initial stalk width
-height = 50; // initial stalk height
-levels = 5; // recursion depth
-rr = 50; // rotation range
-growth(dim, bf, sf, rr, [0, 0, 0], [width, width, height], [0, 0, 0], levels);
+bf = 5; // number of growths per stalk
+sf = 0.6; // x/y-size factor
+rr = 45; // rotation range
+it = [0, 0, 0]; // initial translation
+sw = 3.0; // initial stalk width
+sh = 40; // initial stalk height
+is = [sw, sw, sh]; // initial scale
+ir = [0, 0, 0]; // initial rotation
+levels = 6; // recursion depth
+
+growth(dim, bf, sf, rr, it, is, ir, levels);
