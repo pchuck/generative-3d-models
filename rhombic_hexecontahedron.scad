@@ -1,5 +1,6 @@
 // Rhombic Hexecontahedron
 //   coords via: http://dmccooey.com/polyhedra/RhombicHexecontahedron.html
+//
 scaling_factor = 10;
 
 C0 = sqrt(10 * (5 - sqrt(5))) / 10;
@@ -44,6 +45,12 @@ faces = [
   [29,  5, 17, 53], [29, 53, 61, 37], [29, 37,  9, 33], [29, 33, 57, 49], [29, 49, 15,  5]
 ];
 
-scale(scaling_factor) {
-  polyhedron(points=vertices, faces=faces, convexity=20);
+$fn=20;
+minkowski() {
+
+  scale(scaling_factor) {
+    polyhedron(points=vertices, faces=faces, convexity=20);
+  }
+  
+  sphere(2);
 }

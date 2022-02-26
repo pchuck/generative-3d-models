@@ -3,11 +3,14 @@
 //
 use <polyhedra_primitives.scad>;
 
-txt_depth = 0.12; // was 0.09
+txt_depth = 0.09; // was 0.09, 0.12 for some fonts
 diameter = 24; // distance from one vertex to the vertex opposite
-minko = 0.3; // chamfer the edges [0 = disabled]
+//minko = 0.3; // chamfer the edges [0 = disabled]
 roll = -0.1; // round by intersection with a smaller sphere [0 = disabled]
 minkfn = 80; // $fn variable for chamfer and the sphere
+
+// sharp edges
+minko = 0.03;
 
 // shape constants
 C0 = 0.809016994374947424102293417183;
@@ -16,11 +19,9 @@ original_diameter = sqrt(C0 * C0 + 0.25) + minko;
 scaling_factor = diameter * 0.5 / original_diameter;
 
 // western
-/*
 txt_size = 0.35;
 txt_font = "Arial:style=Bold";
 labels = ["14","20","13","3","2","19","18","8","1","7","12","10","4","5","6.","9.","11","17","16","15"];
-*/
 
 /*
 // japanese
@@ -44,9 +45,11 @@ labels = ["१४","२०","१३","३","२","१९","१८","८","१","
 */
 
 // tibetan
+/*
 txt_size = 0.45;
 txt_font = "Kokonor:style=Bold";
 labels = ["༡༤","༢༠","༡༣","༣","༢","༡༩","༡༨","༨","༡","༧","༡༢","༡༠","༤","༥","༦","༩","༡༡","༡༧","༡༦","༡༥"];
+*/
 
 vertices = [
     [0.5, 0.0,  C0], [0.5,  0.0,  -C0], [-0.5, 0.0,  C0], [-0.5,  0.0, -C0],

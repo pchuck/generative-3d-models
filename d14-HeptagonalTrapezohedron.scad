@@ -10,9 +10,12 @@ txt_depth = .09;
 txt_size = .4;
 txt_font = "Arial:style=Bold";
 diameter = 24; // distance from one vertex to the vertex opposite
-minko = 0.1;   // chamfer the edges [0 = disabled]
+//minko = 0.1;   // chamfer the edges [0 = disabled]
 roll = -0.1;   // round by intersection with a smaller sphere [0 = disabled]
 minkfn = 80;   // $fn variable for chamfer and the sphere
+
+// sharp edges
+minko = 0.03;
 
 // shape constants
 C0 = 0.0520950836016870306476547719793196081537;
@@ -45,18 +48,8 @@ faces = [
     [1, 13, 12, 11], [1, 15, 14, 13], [1,  3,  2, 15]
 ];
 
-scale(scaling_factor) { 
-    difference() {
-        intersection() {
-            minkowski($fn=minkfn){
-                polyhedron(points=vertices, faces=faces, convexity=20);
-            sphere(minko);
-        }
-        sphere(original_diameter, $fn=minkfn);
-    }
-    for(i=[0:len(faces)-1])
-        facetext_alt(zint,
-                     facecoord(vertices, faces, i), labels[i], faces[i][0],
-                     minko, txt_font, txt_size, txt_depth);
-    }
-}
+// polyhedron rendered with labels and chamfering
+render_10_12(labels, scaling_factor, vertices, faces, minko,
+             original_diameter, roll, minkfn,
+             txt_font, txt_size, txt_depth,
+             2, zint);

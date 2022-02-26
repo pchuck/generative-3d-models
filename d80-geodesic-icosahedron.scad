@@ -67,6 +67,9 @@ faces = [
 ];
 
 // polyhedron rendered with labels and chamfering
+/*
 render_simple(labels, scaling_factor, vertices, faces, minko,
        original_diameter, roll, minkfn,
        txt_font, txt_size, txt_depth);
+*/
+polyhedron(points=vertices, faces=faces, convexity=20);

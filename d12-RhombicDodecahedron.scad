@@ -10,9 +10,16 @@ txt_depth = .09;
 txt_size = .475; //.55
 txt_font = "Arial:style=Bold";
 diameter = 24;  // distance from one vertex to the vertex opposite
-minko = .2;     // chamfer the edges [0 = disabled]
-roll = 0; //0.2 // round by intersection with a smaller sphere [0 = disabled]
 minkfn = 80;    // $fn variable for chamfer and the sphere
+
+// heavily rounded
+/*
+minko = .2; // chamfer the edges [0 = disabled]
+roll = 0.2; // round by intersection with a smaller sphere [0 = disabled]
+*/
+// traditional/sharp edges
+minko = .05;
+roll = 0;
 
 // shape constants
 C0 = 3 * sqrt(2) / 8;

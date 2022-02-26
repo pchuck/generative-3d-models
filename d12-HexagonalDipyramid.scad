@@ -8,18 +8,24 @@
 use <polyhedra_primitives.scad>;
  
 txt_depth = .11;
-txt_size = .55;
+txt_size = .475;
 txt_font = "Arial:style=Bold";
 diameter = 27; // distance from one vertex to the vertex opposite
+minkfn = 80;   // $fn variable for chamfer and the sphere
+
+// heavily rounded
+/*
 minko = 0.4;   // chamfer the edges [0 = disabled]
 roll = 0.2;    // round by intersection with a smaller sphere [0 = disabled]
-minkfn = 80;   // $fn variable for chamfer and the sphere
+*/
+// traditional/sharp edges
+minko = 0.03;
+roll = 0;
 
 // shape constants
 C0 = 1 / sqrt(3);
 C1 = 2 / sqrt(3);
-// the height of each pyramids in the dipyramid;
-// different from the original coordinates (2)
+// height of each pyramid in the dipyramid; different from original coords (2)
 C2 = C1; 
 original_diameter = max(C2, C1) + minko;
 scaling_factor = diameter / 2 / original_diameter; 
@@ -48,3 +54,5 @@ render_10_12(labels, scaling_factor, vertices, faces, minko,
              original_diameter, roll, minkfn,
              txt_font, txt_size, txt_depth,
              2, zint);
+
+

@@ -7,9 +7,13 @@ txt_depth = .12;
 txt_size = .4;
 txt_font = "Helvetica:style=Bold";
 diameter = 24; // distance from one vertex to the vertex opposite
-minko = 0.1;   // chamfer the edges [0 = disabled]
-roll = 0.15;   // round by intersection with a smaller sphere [0 = disabled]
+//minko = 0.1;   // chamfer the edges [0 = disabled]
+//roll = 0.15;   // round by intersection with a smaller sphere [0 = disabled]
 minkfn = 80;   // sets the $fn variable for the "rounding"s
+
+// sharp edges
+minko = 0.03;
+roll = 0.0;
 
 // shape constants
 C0 = 0.1067764671821527129104854331344823715423;
