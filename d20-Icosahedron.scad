@@ -10,7 +10,7 @@ roll = -0.1; // round by intersection with a smaller sphere [0 = disabled]
 minkfn = 80; // $fn variable for chamfer and the sphere
 
 // sharp edges
-minko = 0.03;
+minko = 0.1; // 03;
 
 // shape constants
 C0 = 0.809016994374947424102293417183;
@@ -20,7 +20,7 @@ scaling_factor = diameter * 0.5 / original_diameter;
 
 // western
 txt_size = 0.35;
-txt_font = "Arial:style=Bold";
+txt_font = "Arial"; // "Arial:style=Bold";
 labels = ["14","20","13","3","2","19","18","8","1","7","12","10","4","5","6.","9.","11","17","16","15"];
 
 /*
