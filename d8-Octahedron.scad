@@ -1,4 +1,4 @@
-// Octahedron
+// Octahedron - platonic solid
 //   3 sided faces = 8
 //   degree 4 vertices = 6
 //   coords via: http://dmccooey.com/polyhedra/Octahedron.html

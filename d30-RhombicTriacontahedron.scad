@@ -1,4 +1,4 @@
-// Rhombic Triacontahedron
+// Rhombic Triacontahedron - catalan solid
 //   4 sided faces = 30
 //   degree 3 vertices = 20
 //   degree 5 vertices = 12

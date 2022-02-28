@@ -1,4 +1,4 @@
-// Dodecahedron
+// Dodecahedron - platonic solid
 //   5 sided faces = 12
 //   degree 3 vertices = 20
 //   "halves" = 12

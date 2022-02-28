@@ -1,4 +1,4 @@
-// TetrakisHexahedron
+// TetrakisHexahedron - catalan solid
 //   3 sided faces = 24
 //   degree 4 vertices = 6
 //   degree 6 vertices = 8

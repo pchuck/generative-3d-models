@@ -1,4 +1,4 @@
-// Tetrahedron
+// Tetrahedron - platonic solid
 //   3 sided faces = 4
 //   degree 3 vertices = 4
 //   coords via: http://dmccooey.com/polyhedra/Tetrahedron.html

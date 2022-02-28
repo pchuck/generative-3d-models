@@ -1,4 +1,4 @@
-// 20-sided icosahedron
+// 20-sided icosahedron - platonic solid
 //   coords via: http://dmccooey.com/polyhedra/Icosahedron.txt
 //
 use <polyhedra_primitives.scad>;

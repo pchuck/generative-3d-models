@@ -1,4 +1,4 @@
-// 120-sided Disdyakis Triacontahedron
+// 120-sided Disdyakis Triacontahedron - catalan solid
 //   coords via http://dmccooey.com/polyhedra/DisdyakisTriacontahedron.txt
 //
 use <polyhedra_primitives.scad>;

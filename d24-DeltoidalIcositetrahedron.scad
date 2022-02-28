@@ -1,4 +1,4 @@
-// Deltoidal Icositetrahedron
+// Deltoidal Icositetrahedron - catalan solid
 //   4 sided faces = 24
 //   degree 4 vertices = 18
 //   degree 3 vertices = 8

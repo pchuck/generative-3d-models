@@ -1,4 +1,4 @@
-// Pentakis Dodecahedron
+// Pentakis Dodecahedron - catalan solid
 //   3 sided faces = 60
 //   degree 6 vertices = 20
 //   degree 5 vertices = 12

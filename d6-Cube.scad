@@ -1,4 +1,4 @@
-// Cube (Hexahedron)
+// Cube (Hexahedron) - platonic solid
 //   coords via: http://dmccooey.com/polyhedra/Cube.html
 //
 use <polyhedra_primitives.scad>;

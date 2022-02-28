@@ -1,11 +1,11 @@
 // Pentagonal Trapezohedron
-//   coords via: http://dmccooey.com/polyhedra/Icosahedron.txt
+//   coords via: http://dmccooey.com/polyhedra/PentagonalTrapezohedron.html
 //
 use <polyhedra_primitives.scad>;
 
 txt_depth = .12;
 txt_size = .4;
-txt_font = "Ariel"; // "Helvetica:style=Bold";
+txt_font = "Arial"; // "Helvetica:style=Bold";
 diameter = 24; // distance from one vertex to the vertex opposite
 //minko = 0.1;   // chamfer the edges [0 = disabled]
 //roll = 0.15;   // round by intersection with a smaller sphere [0 = disabled]

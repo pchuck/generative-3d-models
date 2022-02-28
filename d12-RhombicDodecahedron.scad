@@ -1,4 +1,4 @@
-// Rhombic Dodecahedron 
+// Rhombic Dodecahedron - catalan solid
 //   4 sided faces = 12
 //   degree 3 vertices = 6
 //   degree 4 vertices = 8

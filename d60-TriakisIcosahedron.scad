@@ -1,4 +1,4 @@
-// Triakis Icosahedron
+// Triakis Icosahedron - catalan solid
 //   3 sided faces = 60
 //   degree 10 vertives = 12
 //   degree 3 vertices = 20

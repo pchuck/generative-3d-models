@@ -1,4 +1,4 @@
-// Triakis Octahedron
+// Triakis Octahedron - catalan solid
 //   3 sided faces = 24
 //   degree 8 vertices = 6
 //   degree 3 vertices = 8
