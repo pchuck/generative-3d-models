@@ -46,7 +46,9 @@ faces = [
 ];
 
 // polyhedron rendered with labels and chamfering
+
 render_10_12(labels, scaling_factor, vertices, faces, minko,
-             original_diameter, roll, minkfn,
-             txt_font, txt_size, txt_depth,
-             2, zint);
+          original_diameter, roll, minkfn,
+          txt_font, txt_size, txt_depth,
+          0, zint);
+
