@@ -3,14 +3,11 @@
 //
 use <polyhedra_primitives.scad>;
 
-txt_depth = 0.09; // was 0.09, 0.12 for some fonts
+txt_depth = 0.09;
 diameter = 24; // distance from one vertex to the vertex opposite
-//minko = 0.3; // chamfer the edges [0 = disabled]
+minko = 0.1;   // chamfer the edges [0 = disabled]
 roll = -0.1; // round by intersection with a smaller sphere [0 = disabled]
 minkfn = 80; // $fn variable for chamfer and the sphere
-
-// sharp edges
-minko = 0.1; // 03;
 
 // shape constants
 C0 = 0.809016994374947424102293417183;

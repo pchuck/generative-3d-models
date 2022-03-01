@@ -90,8 +90,9 @@ simple_extruded_vase(5, 180, radius, height / 2, height / 2, [1, 1], [0, 0, 27])
 simple_extruded_vase(5, 180, radius, height, height / 2, [0, 0], [0, 0, -3]);
 */
 
-/* 
+
 // with varying, increasing radius
+/*
 simple_extruded_vase(8, 60, radius, 0, height / 3, [1.25, 1.75], [0, 180, 180]);
 simple_extruded_vase(8, 60, radius, height / 3, height / 3, [1.25, 1.25], [0, 0, 0]);
 simple_extruded_vase(8, 60, radius * 1.25, height / 3 * 2, height / 3, [2, 1.5], [0, 0, 30]);

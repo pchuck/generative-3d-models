@@ -6,19 +6,12 @@
 use <polyhedra_primitives.scad>;
 
 txt_depth = 0.09;
-txt_size = 0.40; // 0.3;
-txt_font = "Arial"; // "Arial:style=Bold";
-diameter = 26; // distance from one vertex to the vertex opposite. was 24
+txt_size = 0.40;
+txt_font = "Arial";
+diameter = 26; // distance from one vertex to the vertex opposite
+minko = 0.1;   // chamfer the edges [0 = disabled]
+roll = 0;      // round by intersection with a smaller sphere [0 = disabled]
 minkfn = 80;   // $fn variable for chamfer and the sphere
-
-// heavily rounded
-/*
-roll = 0.2075; // round by intersection with a smaller sphere [0 = disabled]
-minko = 0;     // chamfer the edges [0 = disabled]
-*/
-// traditional/sharp edges
-minko = 0.1; // 0.03;
-roll = 0;
 
 // shape constants
 C0 = sqrt(2) / 2; 

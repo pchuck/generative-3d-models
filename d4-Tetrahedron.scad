@@ -7,15 +7,11 @@ use <polyhedra_primitives.scad>;
 
 txt_depth = .12;
 txt_size = .3;
-txt_font = "Arial"; // "Arial:style=Bold";
+txt_font = "Arial";
 diameter = 27; // distance from one vertex to the vertex opposite
-//minko = 0.2;   // chamfer the edges [0 = disabled]
-//roll = .22;    // round by intersection with a smaller sphere [0 = disabled]
+minko = 0.1;   // chamfer the edges [0 = disabled]
+roll = 0;      // round by intersection with a smaller sphere [0 = disabled]
 minkfn = 80;   // sets the $fn variable for the "rounding"s
-
-// sharp edges
-minko = 0.1; // 0.03;
-roll = 0;
 
 // shape constants
 C0 = sqrt(2) / 4;
