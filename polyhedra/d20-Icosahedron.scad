@@ -4,7 +4,7 @@
 use <polyhedra_primitives.scad>;
 
 txt_depth = 0.09;
-diameter = 24; // distance from one vertex to the vertex opposite
+diameter = 24; // distance from one vertex to the vertex opposite. (30=large)
 minko = 0.1;   // chamfer the edges [0 = disabled]
 roll = -0.1; // round by intersection with a smaller sphere [0 = disabled]
 minkfn = 80; // $fn variable for chamfer and the sphere
