@@ -1,4 +1,4 @@
-// fractal growth, 2d version
+// fractal growth, 3d version
 //
 // github.com/pchuck/generative-3d-models
 //
