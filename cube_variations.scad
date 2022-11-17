@@ -20,7 +20,7 @@ module random_cube_pyramid() {
         for(i=[0: 1: 100]) {
             tz = rand1(t);
             translate([rand(-z, z), rand(-z, z), z]) 
-            cube([rand1(s), rand1(s), rand1(s)]);
+                cube([rand1(s), rand1(s), rand1(s)]);
         }
     }
 }
@@ -29,11 +29,12 @@ module random_cube_pyramid() {
 module sparse_random_cube_cloud() {
     t = 20;
     s = 3;
+    n = 100;
     translate([0, 0, -1])
-    for(i=[0: 1: 100]) {
+    for(i=[0: 1: n]) {
         tz = rand1(t);
         translate([rand1(t), rand1(t), rand1(t)]) 
-          cube([rand1(s), rand1(s), rand1(s)]);
+            cube([rand1(s), rand1(s), rand1(s)]);
     }
 }
 
@@ -41,11 +42,12 @@ module sparse_random_cube_cloud() {
 module dense_random_cube_cloud() {
     t = 20;
     s = 3;
-    translate([0, 0, -1])
-    for(i=[0: 1: 5000]) {
+    n = 5000;
+    translate([-t / 2, -t / 2, -t / 2])
+    for(i=[0: 1: n]) {
         tz = rand1(t);
         translate([rand1(t), rand1(t), rand1(t)]) 
-          cube([rand1(s), rand1(s), rand1(s)]);
+            cube([rand1(s), rand1(s), rand1(s)]);
     }
 }
 
@@ -53,11 +55,24 @@ module dense_random_cube_cloud() {
 module skyscrapers() {
     t = 20;
     s = 3;
+    n = 100;
     translate([0, 0, -1])
-    for(i=[0: 1: 100]) {
+    for(i=[0: 1: n]) {
         tz = rand1(t);
         translate([rand1(t), rand1(t), 0]) 
-        cube([rand1(s), rand1(s), rand1(tz)]);
+            cube([rand1(s), rand1(s), rand1(tz)]);
+    }
+}
+
+levels = 1000;
+module cube_connect_recurse(x, y, z, l) {
+    s = 3;
+    if(l < levels) {
+       translate([x, y, z])
+           cube([s, s, s]);
+       cube_connect_recurse(x + rand1(s) - rand1(s),
+                            y + rand1(s) - rand1(s),
+                            z + rand1(s) - rand1(s), l + 1);
     }
 }
 
@@ -65,5 +80,6 @@ module skyscrapers() {
 //random_cube_pyramid();
 //sparse_random_cube_cloud();
 //dense_random_cube_cloud();
-skyscrapers();
+//skyscrapers();
+cube_connect_recurse(0, 0, 0, 0);
 
