@@ -16,4 +16,6 @@ is = [sw, sw, sh]; // initial scale
 ir = [0, 0, 0]; // initial rotation
 levels = 6; // recursion depth
 
-growth(dim, bf, sf, rr, it, is, ir, levels);
+
+
+
